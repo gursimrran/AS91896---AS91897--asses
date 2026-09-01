@@ -5,6 +5,11 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__)
 app.secret_key= 'your_secret_key'
 
+def load_data():
+    with open('data/products.json') as file:
+        products = json.load(file)
+    return products    
+
 @app.route('/')
 def index():
     products=load_data()
