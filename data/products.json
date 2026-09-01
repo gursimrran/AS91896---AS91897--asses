@@ -1,0 +1,19 @@
+{
+    "Clear iPhone Case": {
+        "category": "Case",
+        "price": 25,
+        "stock": 10
+    },
+    "Pink Heart Phone Charm": {
+        "category": "Charm",
+        "price": 8,
+        "stock": 15
+    },
+    "Cherry Keychain": {
+        "category": "Keychain",
+        "price": 10,
+        "stock": 12
+    }
+}
+
+
