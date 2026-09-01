@@ -7,7 +7,8 @@ app.secret_key= 'your_secret_key'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    products=load_data()
+    return render_template('index.html', products=products)
 
 @app.route('/about')
 def about():
