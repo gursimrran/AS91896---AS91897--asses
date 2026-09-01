@@ -9,3 +9,9 @@
     
 </body>
 </html>
+
+<ul>
+    {% for products, details in products.items() %}
+    <li>{{products}} -  ${{ details['price'] }}   (Stock: {{ details['stock']  }})</li>
+    {% endfor %}
+</ul>
