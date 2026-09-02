@@ -6,12 +6,19 @@
     <title>Case & Charm Co</title>
 </head>
 <body>
+    <h1>Iphone Cases</h1>
+    <ul>{% for product, details in cases.items() %}
+        <li>{{ product }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
+        {% endfor %}
+    </ul> 
     
+    <h1>Phone Charms</h1>
+    <ul>
+        {% for product, details in charms.items() %}
+            <li>{{ product }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
+        {% endfor %}
+    </ul>
+  
 </body>
 </html>
 
-<ul>
-    {% for products, details in products.items() %}
-    <li>{{products}} -  ${{ details['price'] }}   (Stock: {{ details['stock']  }})</li>
-    {% endfor %}
-</ul>
