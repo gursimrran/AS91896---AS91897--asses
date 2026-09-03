@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case & Charm Co</title>
+</head>
+<body>
+    <form action="{{ url_for('add_to_cart') }}" method="post">
+
+        <fieldset>
+            <legend>Select iPhone Case</legend>
+    
+            <select name="product" id="case">
+                {% for product, details in cases.items() %}
+                    <option value="{{ product }}">
+                        {{ product }} ${{ details['price'] }}
+                    </option>
+                {% endfor %}
+            </select>
+    
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" value="1" min="1">
+    
+            <button type="submit">Add Case to Cart</button>
+        </fieldset>
+    
+    </form>
+    
+    
+    <form action="{{ url_for('add_to_cart') }}" method="post">
+    
+        <fieldset>
+            <legend>Select Phone Charm</legend>
+    
+            <select name="product" id="charm">
+                {% for charm, details in charms.items() %}
+                    <option value="{{ charm }}">
+                        {{ charm }} ${{ details['price'] }}
+                    </option>
+                {% endfor %}
+            </select>
+    
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" value="1" min="1">
+    
+            <button type="submit">Add Charm to Cart</button>
+        </fieldset>
+    
+    </form>
+   
+  
+</body>
+</html>
+
