@@ -28,6 +28,12 @@ def checkout():
 def order_history():
     return render_template('order_history.html')
 
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    cases = load_data('iphone_cases.json')
+    charms = load_data('phone_charms.json')
+    return render_template("index1.html", cases=cases, charms=charms)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
