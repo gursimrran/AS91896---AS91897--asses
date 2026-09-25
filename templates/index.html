@@ -18,6 +18,15 @@
             <li>{{ product }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
         {% endfor %}
     </ul>
+
+    <h1>Add-ons</h1>
+
+    <ul>
+        {% for addon, details in addons.items() %}
+           <li>{{ addon }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
+        {% endfor %}   
+
+    </ul>
   
 </body>
 </html>
