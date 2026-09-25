@@ -12,9 +12,10 @@ def load_data(filename):
 
 @app.route('/')
 def index():
-    cases=load_data('iphone_cases.json')
-    charms=load_data('phone_charms.json')
-    return render_template('index.html', cases=cases, charms=charms)
+    cases = load_data('iphone_cases.json')
+    charms = load_data('phone_charms.json')
+    addons = load_data('addons.json')
+    return render_template('index.html', cases=cases, charms=charms, addons=addons)
 
 @app.route('/about')
 def about():
