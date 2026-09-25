@@ -1,0 +1,18 @@
+{ 
+    "Gift Box": {
+        "price": 5,
+        "stock": 20
+    
+    },
+    "Personalised Note": {
+        "price": 3,
+        "stock": 30
+    },
+    "Express Delivery": {
+        "price": 10,
+        "stock": 15
+  
+ 
+    }
+}
+
