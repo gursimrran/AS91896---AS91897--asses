@@ -19,8 +19,8 @@
                 {% endfor %}
             </select>
     
-            <label for="quantity">Quantity</label>
-            <input type="number" name="quantity" value="1" min="1">
+            <label for="charm_quantity">Quantity</label>
+            <input type="number" name="quantity" id="charm_quantity" value="1" min="1">
     
             <button type="submit">Add Case to Cart</button>
         </fieldset>
@@ -41,15 +41,57 @@
                 {% endfor %}
             </select>
     
-            <label for="quantity">Quantity</label>
-            <input type="number" name="quantity" value="1" min="1">
+            <label for="case_quantity">Quantity</label>
+            <input type="number" name="quantity" id="case_quantity" value="1" min="1">
     
+            <button type="submit">Add Case to Cart</button>
+        </fieldset>
+    </form>
+
+    <h2>Displaying iPhone Case Data</h2>
+    <ul>
+        {% for product, details in cases.items() %}
+            <li>{{ product }} ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Select Phone Charm</h1>
+
+    <form action="{{ url_for('add_to_cart') }}" method="post">
+        <fieldset>
+            <legend>Select Phone Charm</legend>
+
+            <select name="product" id="charm">
+                {% for charm, details in charms.items() %}
+                    <option value="{{ charm }}">
+                        {{ charm }} ${{ details['price'] }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="charm_quantity">Quantity</label>
+            <input type="number" name="quantity" id="charm_quantity" value="1" min="1">
+
             <button type="submit">Add Charm to Cart</button>
         </fieldset>
-    
-    </form>
-   
-  
+      </form>
+
+    <h2>Displaying Phone Charm Data</h2>
+    <ul>
+        {% for charm, details in charms.items() %}
+            <li>{{ charm }} ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add-ons Available</h2>
+    <ul>
+        {% for addon, details in addons.items() %}
+            <li>{{ addon }} (${{ details['price'] }}) (Stock: {{ details['stock'] }})</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>
+  
+
 
