@@ -15,7 +15,7 @@ def index():
     cases = load_data('iphone_cases.json')
     charms = load_data('phone_charms.json')
     addons = load_data('addons.json')
-    return render_template('index.html', cases=cases, charms=charms, addons=addons)
+    return render_template('index1.html', cases=cases, charms=charms, addons=addons)
 
 @app.route('/about')
 def about():
@@ -39,4 +39,4 @@ def add_to_cart():
 if __name__ == '__main__':
     app.run(debug=True)
 
-    
+
