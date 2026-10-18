@@ -26,8 +26,16 @@
         </fieldset>
     
     </form>
-    
-    
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+           <ul class="flashes">
+               {% for messages in messages %}
+                   <li>{{ message }}</li>
+               {% endfor %}   
+           </ul>
+        {% endif %}
+    {% endwith %}     
   
 
     <h2>Displaying iPhone Case Data</h2>
