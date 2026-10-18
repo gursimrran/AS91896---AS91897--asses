@@ -28,25 +28,7 @@
     </form>
     
     
-    <form action="{{ url_for('add_to_cart') }}" method="post">
-    
-        <fieldset>
-            <legend>Select Phone Charm</legend>
-    
-            <select name="product" id="charm">
-                {% for charm, details in charms.items() %}
-                    <option value="{{ charm }}">
-                        {{ charm }} ${{ details['price'] }}
-                    </option>
-                {% endfor %}
-            </select>
-    
-            <label for="case_quantity">Quantity</label>
-            <input type="number" name="quantity" id="case_quantity" value="1" min="1">
-    
-            <button type="submit">Add Case to Cart</button>
-        </fieldset>
-    </form>
+  
 
     <h2>Displaying iPhone Case Data</h2>
     <ul>
