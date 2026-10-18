@@ -19,8 +19,8 @@
                 {% endfor %}
             </select>
     
-            <label for="charm_quantity">Quantity</label>
-            <input type="number" name="quantity" id="charm_quantity" value="1" min="1">
+            <label for="case_quantity">Quantity</label>
+            <input type="number" name="quantity" id="case_quantity" value="1" min="1">
     
             <button type="submit">Add Case to Cart</button>
         </fieldset>
@@ -30,7 +30,7 @@
     {% with messages = get_flashed_messages() %}
         {% if messages %}
            <ul class="flashes">
-               {% for messages in messages %}
+               {% for message in messages %}
                    <li>{{ message }}</li>
                {% endfor %}   
            </ul>

@@ -59,6 +59,7 @@ def add_to_cart():
         }           
 
     session['cart'] = cart
+    print(cart)
     session.modified = True  
 
     flash(f"{quantity} {product}(s) added to cart.")  
