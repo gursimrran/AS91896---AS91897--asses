@@ -15,7 +15,13 @@ def index():
     cases = load_data('iphone_cases.json')
     charms = load_data('phone_charms.json')
     addons = load_data('addons.json')
-    return render_template('index1.html', cases=cases, charms=charms, addons=addons)
+    cart = session.get('cart', {})
+
+    cart_total = sum(
+        details['price'] * details['quantity']
+        for details in cart.values()
+    )
+    return render_template('index1.html', cases=cases, charms=charms, addons=addons, cart=cart, cart_total=cart_total)
 
 @app.route('/about')
 def about():
@@ -49,6 +55,8 @@ def add_to_cart():
     else:
         flash("Invaild product selected.")
         return redirect (url_for('index'))  
+    
+    cart = session.get('cart', {})
 
     if product in cart:
         cart[product]['quantity'] += quantity 
@@ -59,7 +67,6 @@ def add_to_cart():
         }           
 
     session['cart'] = cart
-    print(cart)
     session.modified = True  
 
     flash(f"{quantity} {product}(s) added to cart.")  
