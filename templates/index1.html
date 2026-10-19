@@ -100,6 +100,23 @@
             <li>{{ addon }} (${{ details['price'] }}) (Stock: {{ details['stock'] }})</li>
         {% endfor %}
     </ul>
+   
+ <h2>Your Cart</h2>    
+ {% if cart %}
+     <ul>
+        {% for item, details in cart.items() %}
+        <li>
+            {{ item }} - ${{ details['price'] }}
+            x {{ details['quantity'] }}
+            = ${{ details['price'] * details['quantity'] }}
+        </li>
+        {% endfor %}    
+     </ul>
+
+     <h3> Cart Total: ${{ cart_total}}</h3>
+{% else %}
+     <p>Your cart is empty</p>
+{% endif %}     
 
 </body>
 </html>
