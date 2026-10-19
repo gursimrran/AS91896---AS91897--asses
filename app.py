@@ -8,7 +8,14 @@ app.secret_key= 'your_secret_key'
 def load_data(filename):
     with open(f'data/{filename}') as file:
         products = json.load(file)
-    return products    
+    return products  
+
+def calculate_total(cart):
+    total = sum(
+        item['price'] * item['quantity']
+        for item in cart.values()
+    ) 
+    return total
 
 @app.route('/')
 def index():
@@ -17,11 +24,10 @@ def index():
     addons = load_data('addons.json')
     cart = session.get('cart', {})
 
-    cart_total = sum(
-        details['price'] * details['quantity']
-        for details in cart.values()
-    )
-    return render_template('index1.html', cases=cases, charms=charms, addons=addons, cart=cart, cart_total=cart_total)
+    total = calculate_total(cart)
+
+    
+    return render_template('index1.html', cases=cases, charms=charms, addons=addons, cart=cart, cart_total=total)
 
 @app.route('/about')
 def about():
