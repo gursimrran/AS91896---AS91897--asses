@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case & Charm Co</title>
-</head>
-<body>
-    <h1>Iphone Cases</h1>
-    <ul>{% for product, details in cases.items() %}
-        <li>{{ product }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
-        {% endfor %}
-    </ul> 
-    
-    <h1>Phone Charms</h1>
-    <ul>
-        {% for product, details in charms.items() %}
-            <li>{{ product }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
-        {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <h1>Add-ons</h1>
+{% block title %}Home - Case & Charm Co{% endblock %}
 
-    <ul>
-        {% for addon, details in addons.items() %}
-           <li>{{ addon }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
-        {% endfor %}   
+{% block content %}
+    <h2>Welcome to Case & Charm Co</h2>
+    <p>Browse our iPhone cases, phone charms and add-ons.</p>
+{% endblock %}
 
-    </ul>
-  
-</body>
-</html>
 
