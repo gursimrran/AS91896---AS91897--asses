@@ -27,7 +27,7 @@ def index():
     total = calculate_total(cart)
 
     
-    return render_template('index.html')
+    return render_template('index1.html', cases=cases, charms=charms, addons=addons, cart=cart, cart_total=total)
 
 @app.route('/about')
 def about():
