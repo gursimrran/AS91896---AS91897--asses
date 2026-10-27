@@ -35,3 +35,16 @@ input {
     border-radius: 6px;
     margin: 5px;
 }
+
+button {
+    background-color: #e8a1ba;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c45d83;
+}
