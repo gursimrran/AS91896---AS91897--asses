@@ -21,3 +21,17 @@ fieldset {
     padding: 20px;
     margin-bottom: 20px;
 }
+
+legend {
+    color: #c45d83;
+    font-weight: bold;
+}
+
+
+select,
+input {
+    padding: 8px;
+    border: 1px solid #e5b4c6;
+    border-radius: 6px;
+    margin: 5px;
+}
