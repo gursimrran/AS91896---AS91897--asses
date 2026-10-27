@@ -48,3 +48,7 @@ button {
 button:hover {
     background-color: #c45d83;
 }
+
+li {
+    margin-bottom: 10px;
+}
