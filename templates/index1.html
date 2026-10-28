@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('order_history') }}">Order History</a>
+        <a href="{{ url_for('checkout') }}">Invoice</a>
+        <a href="{{ url_for('about') }}">About</a>
+    </nav>
+
     <form action="{{ url_for('add_to_cart') }}" method="post">
 
         <fieldset>
