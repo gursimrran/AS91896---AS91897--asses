@@ -135,6 +135,17 @@ def remove_from_cart(item):
 
     return redirect(url_for('index'))   
 
+
+@app.route('/cancel_order', methods=['POST'])
+def cancel_order():
+    session.pop('cart', None)
+    session.pop('selected_addons', None)
+    session.modified = True
+
+    flash("Your order has been cancelled.")
+
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
 
