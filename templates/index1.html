@@ -124,6 +124,9 @@
         {% endfor %}    
      </ul>
 
+     <p>Products Subtotal: ${{ '%.2f' % product_subtotal }}</p>
+     <p>Add-ons Subtotal: ${{ '%.2f' % addon_subtotal }}</p>
+
      <h4>Cart Total: ${{ '%.2f' % cart_total }}</h4>
 {% else %}
      <p>Your cart is empty</p>
