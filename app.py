@@ -36,10 +36,13 @@ def index():
     addons = load_data('addons.json')
     cart = session.get('cart', {})
 
-    total = calculate_total(cart)
+    total, product_subtotal, addon_subtotal = calculate_total(cart)
+
+    if total > 100:
+        flash("You are ordering a lot! Consider calling us for a special deal.")
 
     
-    return render_template('index1.html', cases=cases, charms=charms, addons=addons, cart=cart, cart_total=total)
+    return render_template('index1.html', cases=cases, charms=charms, addons=addons, cart=cart, cart_total=total, product_subtotal=product_subtotal, addon_subtotal=addon_subtotal)
 
 @app.route('/about')
 def about():
