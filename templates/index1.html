@@ -82,26 +82,24 @@
         {% endfor %}
     </ul>
 
-    <h2>Select Add-ons</h2>
+  
+<h2>Select Add-ons</h2>
 
- <form action="{{ url_for('add_to_cart') }}" method="post">
+<form action="{{ url_for('select_addon') }}" method="post">
     <fieldset>
-        <legend>Select Add-ons</legend>
+        <legend>Add-ons</legend>
 
-        <select name="product" id="addon">
-            {% for addon, details in addons.items() %}
-                <option value="{{ addon }}">
-                    {{ addon }} ${{ details['price'] }}
-                </option>
-            {% endfor %}
-        </select>
+        {% for addon, details in addons.items() %}
+            <label>
+                <input type="checkbox" name="addons" value="{{ addon }}">
+                {{ addon }} (${{ details['price'] }})
+            </label><br>
+        {% endfor %}
 
-        <label for="addon_quantity">Quantity</label>
-        <input type="number" name="quantity" id="addon_quantity" value="1" min="1">
-
-        <button type="submit">Add Add-on to Cart</button>
+        <button type="submit">Add Add-ons to Cart</button>
     </fieldset>
-   </form>
+</form>
+
 
     <h2>Add-ons Available</h2>
     <ul>

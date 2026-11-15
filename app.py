@@ -78,6 +78,34 @@ def add_to_cart():
     flash(f"{quantity} {product}(s) added to cart.")  
     return redirect(url_for('index'))
 
+
+
+@app.route('/select_addon', methods=['POST'])
+def select_addon():
+    selected_addons = request.form.getlist('addons')
+
+    addons = load_data('addons.json')
+    cart = session.get('cart', {})
+
+    for addon in selected_addons:
+        if addon in addons:
+            price = addons[addon]['price']
+
+            if addon in cart:
+                cart[addon]['quantity'] += 1
+            else:
+                cart[addon] = {
+                    'price': price,
+                    'quantity': 1
+                }
+
+    session['cart'] = cart
+    session.modified = True
+
+    flash("Selected add-ons added to cart.")
+    return redirect(url_for('index'))
+   
+
 @app.route('/remove_from_cart/<item>')
 def remove_from_cart(item):
     cart = session.get('cart', {})
