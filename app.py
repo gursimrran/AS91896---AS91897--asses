@@ -1,4 +1,4 @@
-import json 
+import json, datetime
 
 from flask import Flask, render_template, request,session, flash, redirect, url_for
 
@@ -50,7 +50,26 @@ def about():
 
 @app.route('/checkout')
 def checkout():
-    return render_template('invoice.html')
+    customer_name= request.form['customer_name'].strip().title()
+
+    cart = session.get('cart', {})
+
+    # Check if cart is empty
+    if not cart:
+        flash("Your cart is empty.")
+        return redirect(url_for('index'))
+    
+    # Check if the customer name has been entered
+    if not customer_name:
+        flash("Customer name is required.")
+        return redirect(url_for('index'))
+    
+    total, product_subtotal, addon_subtotal =  calculate_total(cart)
+
+    invoice_date = datetime.datetime.now(). strftime('%Y-%m-%d %H:%M:%S')
+    invoice_number = f"INV_{customer_name.replace(' ','_')}_{invoice_date}"
+
+    return render_template('invoice.html', customer_name=customer_name, cart=cart, cart_total=total, product_subtotal=product_subtotal, addon_subtotal=addon_subtotal, invoice_date=invoice_date, invoice_number=invoice_number)
 
 @app.route('/orders')
 def order_history():
