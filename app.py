@@ -11,11 +11,23 @@ def load_data(filename):
     return products  
 
 def calculate_total(cart):
-    total = sum(
-        item['price'] * item['quantity']
-        for item in cart.values()
-    ) 
-    return total
+
+    product_subtotal = 0
+    addon_subtotal = 0
+
+    addons = load_data('addons.json')
+
+    for item, details in cart.items():
+        subtotal = details['price'] * details['quantity']
+
+        if item in addons:
+            addon_subtotal += subtotal
+        else:
+            product_subtotal += subtotal
+
+    total = product_subtotal + addon_subtotal
+
+    return total, product_subtotal, addon_subtotal
 
 @app.route('/')
 def index():
