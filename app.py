@@ -48,7 +48,7 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/checkout')
+@app.route('/checkout', methods=['POST'])
 def checkout():
     customer_name= request.form['customer_name'].strip().title()
 
