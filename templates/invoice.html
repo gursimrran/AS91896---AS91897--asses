@@ -2,6 +2,14 @@
 {% block title %}Invoice - Case & Charm Co{% endblock %}
 
 {% block content %}
-<h2>Invoice</h2>
-<p>This page will display the customer invoice after checkout</p>
-{% endblock %}
+<h2>Customer Invoice</h2>
+
+<div class="invoice-details">
+    <p>strong</p>Invoice number:</strong> {{invoice_number}}</p>
+    <p>strong</p>Invoice Date:</strong> {{invoice_date}}</p>
+</div>
+
+<hr>
+
+<h3>Customer Details</h3>
+<p><strong>Customer Name:</strong> {{customer_name}}</p>
