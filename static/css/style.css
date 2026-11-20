@@ -92,3 +92,62 @@ nav a:hover {
     display: block;
     margin: 0 auto 15px;
 }
+
+
+
+
+#cart {
+    margin-top: 40px;
+    color: #8f4965;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 20px;
+    background-color: #fff8f8;
+    border: 1px solid #efd9e1;
+    border-radius: 12px;
+}
+
+.cart-list li {
+    padding: 15px;
+    border-bottom: 1px solid #efd9e1;
+}
+
+.cart-list li:last-child {
+    border-bottom: none;
+}
+
+.cart-list a {
+    color: #b45f7d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cart-list a:hover {
+    color: #71334d;
+}
+
+#checkout {
+    margin-top: 20px;
+}
+
+#checkout input {
+    padding: 8px;
+    border: 1px solid #e8cbd5;
+    border-radius: 6px;
+}
+
+#checkout button {
+    background-color: #c77d98;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#checkout button:hover {
+    background-color: #a85f7b;
+}

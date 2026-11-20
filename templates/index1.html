@@ -154,9 +154,9 @@
 
    
    
- <h2>Your Cart</h2>    
+<h2 id="cart">Your Shopping Bag ♡</h2>  
  {% if cart %}
-     <ul>
+     <ul class="cart-list"
         {% for item, details in cart.items() %}
         <li>
             {{ item }} - ${{ details['price'] }}
