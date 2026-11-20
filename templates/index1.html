@@ -22,6 +22,25 @@
     </nav>
     </header>
 
+    <div class="shop-layout">
+
+        <aside class="sidebar">
+            <h2>Shop Categories</h2>
+    
+            <a href="#cases">♡ iPhone Cases</a>
+            <a href="#charms">♡ Phone Charms</a>
+            <a href="#addons">♡ Add-ons</a>
+            <a href="#cart">♡ Shopping Cart</a>
+        </aside>
+    
+        <main class="shop-content">
+    
+            <section class="welcome-banner">
+                <h2>Find Your New Favourite ♡</h2>
+                <p>Explore our collection of cute phone accessories.</p>
+            </section>
+
+
     <form action="{{ url_for('add_to_cart') }}" method="post">
 
         <fieldset>
@@ -151,6 +170,9 @@
 {% else %}
      <p>Your cart is empty</p>
 {% endif %}     
+
+    </main>
+</div>
 
 </body>
 </html>
