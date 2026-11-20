@@ -3,6 +3,25 @@ import sqlite3
 
 from flask import Flask, render_template, request,session, flash, redirect, url_for
 
+def initalise_database():
+    with sqlite3.connect('case_charm.db') as conn:
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS orders (
+                order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                invoice_number TEXT,
+                customer_name TEXT,
+                items TEXT,
+                addons TEXT,
+                total REAL,
+                date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')            
+
+
+                      
+
 app = Flask(__name__)
 app.secret_key= 'your_secret_key'
 
@@ -190,6 +209,7 @@ def cancel_order():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
+    initialise_database()
     app.run(debug=True)
 
 
