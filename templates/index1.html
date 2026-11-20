@@ -126,30 +126,33 @@
       </div>
 
   
-<h2>Select Add-ons</h2>
+      <h2 id="addons">Choose Your Extras ♡</h2>
 
-<form action="{{ url_for('select_addon') }}" method="post">
-    <fieldset>
-        <legend>Add-ons</legend>
+      <form action="{{ url_for('select_addon') }}" method="post">
+      
+          <div class="product-grid">
+              {% for addon, details in addons.items() %}
+                  <div class="product-card">
+      
+                      <h3>{{ addon }}</h3>
+      
+                      <p>${{ details['price'] }}</p>
+      
+                      <label>
+                          <input type="checkbox" name="addons" value="{{ addon }}">
+                          Select Add-on
+                      </label>
+      
+                  </div>
+              {% endfor %}
+          </div>
+      
+          <button type="submit">Add Selected Extras to Cart</button>
+      
+      </form>
 
-        {% for addon, details in addons.items() %}
-            <label>
-                <input type="checkbox" name="addons" value="{{ addon }}">
-                {{ addon }} (${{ details['price'] }})
-            </label><br>
-        {% endfor %}
 
-        <button type="submit">Add Add-ons to Cart</button>
-    </fieldset>
-</form>
-
-
-    <h2>Add-ons Available</h2>
-    <ul>
-        {% for addon, details in addons.items() %}
-            <li>{{ addon }} (${{ details['price'] }}) (Stock: {{ details['stock'] }})</li>
-        {% endfor %}
-    </ul>
+   
    
  <h2>Your Cart</h2>    
  {% if cart %}
