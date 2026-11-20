@@ -98,33 +98,32 @@
         {% endfor %}
     </div>
 
-    <h1>Select Phone Charm</h1>
 
-    <form action="{{ url_for('add_to_cart') }}" method="post">
-        <fieldset>
-            <legend>Select Phone Charm</legend>
 
-            <select name="product" id="charm">
-                {% for charm, details in charms.items() %}
-                    <option value="{{ charm }}">
-                        {{ charm }} ${{ details['price'] }}
-                    </option>
-                {% endfor %}
-            </select>
+<h2 id="charms">Our Phone Charms ♡</h2>
 
-            <label for="charm_quantity">Quantity</label>
-            <input type="number" name="quantity" id="charm_quantity" value="1" min="1">
-
-            <button type="submit">Add Charm to Cart</button>
-        </fieldset>
-      </form>
-
-    <h2>Displaying Phone Charm Data</h2>
-    <ul>
-        {% for charm, details in charms.items() %}
-            <li>{{ charm }} ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
-        {% endfor %}
-    </ul>
+      <div class="product-grid">
+          {% for charm, details in charms.items() %}
+              <div class="product-card">
+      
+                  <img src="{{ url_for('static', filename='images/iphone and phone charm/' ~ (loop.index + 10) ~ '.png') }}"
+                       alt="{{ charm }}">
+      
+                  <h3>{{ charm }}</h3>
+                  <p>${{ details['price'] }}</p>
+      
+                  <form action="{{ url_for('add_to_cart') }}" method="post">
+                      <input type="hidden" name="product" value="{{ charm }}">
+      
+                      <label>Quantity</label>
+                      <input type="number" name="quantity" value="1" min="1">
+      
+                      <button type="submit">Add to Cart</button>
+                  </form>
+      
+              </div>
+          {% endfor %}
+      </div>
 
   
 <h2>Select Add-ons</h2>
