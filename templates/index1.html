@@ -10,6 +10,7 @@
 <body>
 
     <header class="site-header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Case & Charm Co Logo" class="logo">
     <h1>Case & Charm Co</h1>
     <p>Little details, lovely accessories ♡</p>
 
@@ -42,23 +43,6 @@
 
 
     <form action="{{ url_for('add_to_cart') }}" method="post">
-
-        <fieldset>
-            <legend>Select iPhone Case</legend>
-    
-            <select name="product" id="case">
-                {% for product, details in cases.items() %}
-                    <option value="{{ product }}">
-                        {{ product }} ${{ details['price'] }}
-                    </option>
-                {% endfor %}
-            </select>
-    
-            <label for="case_quantity">Quantity</label>
-            <input type="number" name="quantity" id="case_quantity" value="1" min="1">
-    
-            <button type="submit">Add Case to Cart</button>
-        </fieldset>
     
     </form>
 

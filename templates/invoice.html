@@ -42,6 +42,5 @@
 
 <p>Products Subtotal: ${{ '%.2f'  % product_subtotal }}</p>
 <p>Add-ons Subtotal:  ${{ '%.2f'  % addon_subtotal }}</p>
-<p>Final Total: ${{ '%.2f'  % cart_total }}</p>
-
+<p class="final-total">Final Total: ${{ '%.2f' % cart_total }}</p>
 {% endblock %}
