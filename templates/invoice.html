@@ -5,8 +5,8 @@
 <h2>Customer Invoice</h2>
 
 <div class="invoice-details">
-    <p>strong</p>Invoice number:</strong> {{invoice_number}}</p>
-    <p>strong</p>Invoice Date:</strong> {{invoice_date}}</p>
+    <p><strong>Invoice Number:</strong> {{  invoice_number }}</p>
+    <p><strong>Invoice Date:</strong> {{  invoice_date  }}</p>
 </div>
 
 <hr>
@@ -24,7 +24,7 @@
         <th>Quantity</th>
         <th>Subtotal</th>
     </tr>
-</table>
+
 
 {% for item, details in cart.items() %}
     <tr>
@@ -42,4 +42,6 @@
 
 <p>Products Subtotal: ${{ '%.2f'  % product_subtotal }}</p>
 <p>Add-ons Subtotal:  ${{ '%.2f'  % addon_subtotal }}</p>
-<p>Final Total: ${{ '%2f'  % cart_total }}</p>
+<p>Final Total: ${{ '%.2f'  % cart_total }}</p>
+
+{% endblock %}
