@@ -1,9 +1,13 @@
+"""Flask  web application for Case & Charm Co to manage products, cart session and orders."""
+
 import json, datetime
 import sqlite3
 
 from flask import Flask, render_template, request,session, flash, redirect, url_for
 
 def initialise_database():
+    """Creates the SQLite database and the orders table if it does not exist."""
+
     with sqlite3.connect('case_charm.db') as conn:
         cursor = conn.cursor()
 
@@ -24,11 +28,29 @@ app = Flask(__name__)
 app.secret_key= 'your_secret_key'
 
 def load_data(filename):
+    """Loads product or add-on data from a JSON file.
+    
+    Args:
+        filename (str): Name of the JSON file in the data folder.
+
+    Returns:
+        dict: Item names mapped to a dict containing 'price' and 'stock'.     
+    
+    """
     with open(f'data/{filename}') as file:
         products = json.load(file)
     return products  
 
 def calculate_total(cart):
+    """Calculates the total cost, product subtotal, and add-on subtotal.
+
+    Args:
+       cart (dict): Item names mapped to the dict containing 'price' and 'quantity'.
+
+    Returns:
+       tuple: The total, product_subtotal and addon_subtotal.    
+    
+    """
 
     product_subtotal = 0
     addon_subtotal = 0
@@ -49,6 +71,7 @@ def calculate_total(cart):
 
 @app.route('/')
 def index():
+    """Loads the product data and the cart totals so that it can display on the home page."""
     cases = load_data('iphone_cases.json')
     charms = load_data('phone_charms.json')
     addons = load_data('addons.json')
@@ -64,10 +87,12 @@ def index():
 
 @app.route('/about')
 def about():
+    """Displays the about page."""
     return render_template('about.html')
 
 @app.route('/checkout', methods=['POST'])
 def checkout():
+    """Checks the order, it updates the stock in JSON files, saves to SQLite, and creates an invoice."""
     customer_name= request.form['customer_name'].strip().title()
 
     cart = session.get('cart', {})
@@ -108,7 +133,7 @@ def checkout():
     
 
 
-    invoice_date = datetime.datetime.now(). strftime('%Y-%m-%d %H:%M:%S')
+    invoice_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     invoice_number = f"INV_{customer_name.replace(' ','_')}_{invoice_date}"
 
     # Save order to SQLite database
@@ -137,6 +162,7 @@ def checkout():
 
 @app.route('/invoice')
 def view_invoice():
+    """Displays the invoice page using the invoice dict saved in the session."""
     invoice = session.get('invoice')
 
     if not invoice:
@@ -149,6 +175,7 @@ def view_invoice():
 
 @app.route('/orders')
 def order_history():
+    """Gets all the past orders from the database and displays the order history page."""
     with sqlite3.connect('case_charm.db') as conn:
         cursor = conn.cursor()
 
@@ -159,6 +186,7 @@ def order_history():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    """Checks the available stock and it adds the selected product and quantity to the session cart."""
     product = request.form['product']
     quantity = int(request.form['quantity'])
 
@@ -210,6 +238,7 @@ def add_to_cart():
 
 @app.route('/select_addon', methods=['POST'])
 def select_addon():
+    """Adds the selected add-ons to the session cart."""
     selected_addons = request.form.getlist('addons')
 
     addons = load_data('addons.json')
@@ -236,6 +265,15 @@ def select_addon():
 
 @app.route('/remove_from_cart/<item>')
 def remove_from_cart(item):
+    """Removes an item from the session cart.
+
+    Args:
+        item (str): Name of the item so it can remove from the cart dict.
+
+    Returns:
+        Response: Redirects back to the home page.    
+    
+    """
     cart = session.get('cart', {})
 
     if item in cart:
@@ -251,6 +289,7 @@ def remove_from_cart(item):
 
 @app.route('/cancel_order', methods=['POST'])
 def cancel_order():
+    """Clears the current cart and selected add-ons from the session."""
     session.pop('cart', None)
     session.pop('selected_addons', None)
     session.modified = True
@@ -261,6 +300,16 @@ def cancel_order():
 
 @app.route('/delete_order/<int:order_id>', methods=['POST'])
 def delete_order(order_id):
+    """Deletes an order from the database by using its ID.
+
+    Args: 
+        order_id (int): The ID of the order to delete.
+
+    Returns:
+        Response: Redirects back to the order history page.    
+    
+    
+    """
     with sqlite3.connect('case_charm.db') as conn:
         cursor = conn.cursor()
 
