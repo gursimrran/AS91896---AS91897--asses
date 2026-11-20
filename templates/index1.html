@@ -11,7 +11,7 @@
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('order_history') }}">Order History</a>
-        <a href="{{ url_for('checkout') }}">Invoice</a>
+        <a href="{{ url_for('index') }}#checkout">Invoice</a>
         <a href="{{ url_for('about') }}">About</a>
     </nav>
 
@@ -129,7 +129,7 @@
 
      <h4>Cart Total: ${{ '%.2f' % cart_total }}</h4>
 
-     <form action="{{ url_for('checkout') }}" method="post">
+     <form action="{{ url_for('checkout') }}" method="post" id="checkout">
         <label for="customer_name_checkout">Your Name:</label>
         <input type="text" name="customer_name" id="customer_name_checkout" required>
 

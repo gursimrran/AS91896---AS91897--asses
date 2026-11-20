@@ -69,7 +69,30 @@ def checkout():
     invoice_date = datetime.datetime.now(). strftime('%Y-%m-%d %H:%M:%S')
     invoice_number = f"INV_{customer_name.replace(' ','_')}_{invoice_date}"
 
-    return render_template('invoice.html', customer_name=customer_name, cart=cart, cart_total=total, product_subtotal=product_subtotal, addon_subtotal=addon_subtotal, invoice_date=invoice_date, invoice_number=invoice_number)
+    session['invoice'] = {
+        'customer_name': customer_name,
+        'cart': cart,
+        'cart_total': total,
+        'product_subtotal': product_subtotal,
+        'addon_subtotal': addon_subtotal,
+        'invoice_date': invoice_date,
+        'invoice_number': invoice_number
+    }
+
+    return redirect(url_for('view_invoice'))
+
+
+@app.route('/invoice')
+def view_invoice():
+    invoice = session.get('invoice')
+
+    if not invoice:
+        flash("No invoice available. Please complete checkout first.")
+        return redirect(url_for('index'))
+
+    return render_template('invoice.html', **invoice)
+
+
 
 @app.route('/orders')
 def order_history():
