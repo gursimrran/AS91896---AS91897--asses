@@ -125,7 +125,13 @@ def view_invoice():
 
 @app.route('/orders')
 def order_history():
-    return render_template('order_history.html')
+    with sqlite3.connect('case_charm.db') as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM orders ORDER BY order_id DESC")
+        orders = cursor.fetchall()
+
+    return render_template('order_history.html', orders=orders)
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
