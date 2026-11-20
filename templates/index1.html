@@ -73,12 +73,30 @@
     {% endwith %}     
   
 
-    <h2>Displaying iPhone Case Data</h2>
-    <ul>
+    <h2 id="cases">Our iPhone Cases ♡</h2>
+
+    <div class="product-grid">
         {% for product, details in cases.items() %}
-            <li>{{ product }} ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
+            <div class="product-card">
+    
+                <img src="{{ url_for('static', filename='images/iphone and phone charm/' ~ loop.index ~ '.png') }}"
+                     alt="{{ product }}">
+    
+                <h3>{{ product }}</h3>
+                <p>${{ details['price'] }}</p>
+    
+                <form action="{{ url_for('add_to_cart') }}" method="post">
+                    <input type="hidden" name="product" value="{{ product }}">
+    
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" value="1" min="1">
+    
+                    <button type="submit">Add to Cart</button>
+                </form>
+    
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 
     <h1>Select Phone Charm</h1>
 
