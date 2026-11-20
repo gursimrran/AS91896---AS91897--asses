@@ -18,9 +18,7 @@ def initalise_database():
                 date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')            
-
-
-                      
+                   
 
 app = Flask(__name__)
 app.secret_key= 'your_secret_key'
@@ -88,6 +86,17 @@ def checkout():
 
     invoice_date = datetime.datetime.now(). strftime('%Y-%m-%d %H:%M:%S')
     invoice_number = f"INV_{customer_name.replace(' ','_')}_{invoice_date}"
+
+    # Save order to SQLite database
+    with sqlite3.connect('case_charm.db') as conn:
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            INSERT INTO orders (invoice_number, customer_name, items, addons, total)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (invoice_number, customer_name, json.dumps(cart), json.dumps({}), total))
+
+        conn.commit()
 
     session['invoice'] = {
         'customer_name': customer_name,
