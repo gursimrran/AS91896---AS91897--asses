@@ -1,42 +1,42 @@
 {
     "Cherry Charm": {
         "price": 9,
-        "stock": 15
+        "stock": 50
     },
     "Pearl Charm": {
         "price": 12,
-        "stock": 10
+        "stock": 50
     },
     "Heart Charm": {
         "price": 8,
-        "stock": 20
+        "stock": 50
     },
     "Butterfly Charm": {
         "price": 10,
-        "stock": 12
+        "stock": 50
     },
     "Bow Charm": {
         "price": 9,
-        "stock": 14
+        "stock": 50
     },
     "Strawberry Charm": {
         "price": 8,
-        "stock": 18
+        "stock": 50
     },
     "Flower Charm": {
         "price": 9,
-        "stock": 16
+        "stock": 50
     },
     "Teddy Charm": {
         "price": 13,
-        "stock": 8
+        "stock": 50
     },
     "Star Charm": {
         "price": 7,
-        "stock": 20
+        "stock": 50
     },
     "Pink Bead Charm": {
         "price": 10,
-        "stock": 13
+        "stock": 50
     }
 }

@@ -55,7 +55,7 @@ def index():
     cart = session.get('cart', {})
 
     total, product_subtotal, addon_subtotal = calculate_total(cart)
-
+    
     if total > 100:
         flash("You are ordering a lot! Consider calling us for a special deal.")
 
@@ -83,6 +83,30 @@ def checkout():
         return redirect(url_for('index'))
     
     total, product_subtotal, addon_subtotal =  calculate_total(cart)
+    cases = load_data('iphone_cases.json')
+    charms = load_data('phone_charms.json')
+    addons = load_data('addons.json')
+
+    for item, details in cart.items():
+        if item in cases:
+
+            cases[item]['stock'] -= details['quantity']
+        elif item in charms:
+             charms[item]['stock'] -= details['quantity']
+        elif item in addons:
+             addons[item]['stock'] -= details['quantity']
+    
+
+    with open('data/iphone_cases.json', 'w') as file:
+         json.dump(cases, file, indent=4)
+
+    with open('data/phone_charms.json', 'w') as file:
+        json.dump(charms, file, indent=4)
+
+    with open('data/addons.json', 'w') as file:
+         json.dump(addons, file, indent=4)
+    
+
 
     invoice_date = datetime.datetime.now(). strftime('%Y-%m-%d %H:%M:%S')
     invoice_number = f"INV_{customer_name.replace(' ','_')}_{invoice_date}"
@@ -145,17 +169,29 @@ def add_to_cart():
     cart = session.get('cart', {})
 
     if product in cases:
-        price = cases[product]['price']
+       price = cases[product]['price']
+       stock = cases[product]['stock']
     elif product in charms:
-        price = charms [product]['price']
+        price = charms[product]['price']
+        stock = charms[product]['stock']
     elif product in addons:
-        price = addons [product]['price']
+        price = addons[product]['price']
+        stock = addons[product]['stock']
     else:
-        flash("Invaild product selected.")
-        return redirect (url_for('index'))  
-    
-    cart = session.get('cart', {})
+        flash("Invalid product selected.")
+        return redirect(url_for('index'))
 
+    current_quantity = cart.get(product, {}).get('quantity', 0)
+
+    if quantity < 1:
+        flash("Please enter a valid quantity.")
+        return redirect(url_for('index'))
+
+    if current_quantity + quantity > stock:
+       flash(f"Only {stock - current_quantity} {product}(s) available.")
+       return redirect(url_for('index'))
+
+    
     if product in cart:
         cart[product]['quantity'] += quantity 
     else:
@@ -240,6 +276,6 @@ def delete_order(order_id):
 
 if __name__ == '__main__':
     initialise_database()
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
 
 

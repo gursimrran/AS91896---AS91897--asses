@@ -1,44 +1,42 @@
 {
     "Clear iPhone Case": {
         "price": 6,
-        "stock": 10
+        "stock": 50
     },
     "Pink Heart Case": {
         "price": 8,
-        "stock": 8
+        "stock": 50
     },
     "Floral Case": {
         "price": 9,
-        "stock": 12
+        "stock": 50
     },
     "Cherry Case": {
         "price": 6,
-        "stock": 8
+        "stock": 50
     },
     "Butterfly Case": {
         "price": 10,
-        "stock": 14
+        "stock": 50
     },
     "Leopard Print Case": {
         "price": 7,
-        "stock": 9
+        "stock": 50
     },
     "Checkerboard Case": {
         "price": 8,
-        "stock": 11
+        "stock": 50
     },
     "Baby Blue Case": {
         "price": 6,
-        "stock": 13
+        "stock": 50
     },
     "Cheetah Print Case": {
         "price": 8,
-        "stock": 10
+        "stock": 50
     },
     "Pearl Bow Case": {
         "price": 10,
-        "stock": 7
+        "stock": 50
     }
 }
-
-
