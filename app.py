@@ -3,7 +3,7 @@ import sqlite3
 
 from flask import Flask, render_template, request,session, flash, redirect, url_for
 
-def initalise_database():
+def initialise_database():
     with sqlite3.connect('case_charm.db') as conn:
         cursor = conn.cursor()
 
