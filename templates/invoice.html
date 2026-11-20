@@ -13,3 +13,25 @@
 
 <h3>Customer Details</h3>
 <p><strong>Customer Name:</strong> {{customer_name}}</p>
+
+<hr>
+<h3>Order details</h3>
+
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+    </tr>
+</table>
+
+{% for item, details in cart.items() %}
+    <tr>
+        <td>{{ item }}</td>
+        <td>${{ '%.2f' % details['price'] }}</td>
+        <td>{{ details['quantity'] }}</td>
+        <td>${{ '%.2f' % (details['price'] * details['quantity']) }}</td>
+    </tr>
+    {% endfor %}
+</table>
