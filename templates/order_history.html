@@ -21,6 +21,11 @@
             <td>{{ order[2] }}</td>
             <td>${{ '%.2f'|format(order[5]) }}</td>
             <td>{{ order[6] }}</td>
+            <td>
+                <form action="{{ url_for('delete_order', order_id=order[0]) }}" method="POST">
+                    <button type="submit">Delete Order</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>

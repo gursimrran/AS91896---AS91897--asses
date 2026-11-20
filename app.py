@@ -223,6 +223,21 @@ def cancel_order():
 
     return redirect(url_for('index'))
 
+@app.route('/delete_order/<int:order_id>', methods=['POST'])
+def delete_order(order_id):
+    with sqlite3.connect('case_charm.db') as conn:
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "DELETE FROM orders WHERE order_id = ?",
+            (order_id,)
+        )
+
+        conn.commit()
+
+    flash("Order deleted successfully.")
+    return redirect(url_for('order_history'))
+
 if __name__ == '__main__':
     initialise_database()
     app.run(debug=True)
