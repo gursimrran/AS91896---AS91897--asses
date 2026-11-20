@@ -35,3 +35,11 @@
     </tr>
     {% endfor %}
 </table>
+
+<hr>
+
+<h3>Payment Summary</h3>
+
+<p>Products Subtotal: ${{ '%.2f'  % product_subtotal }}</p>
+<p>Add-ons Subtotal:  ${{ '%.2f'  % addon_subtotal }}</p>
+<p>Final Total: ${{ '%2f'  % cart_total }}</p>
